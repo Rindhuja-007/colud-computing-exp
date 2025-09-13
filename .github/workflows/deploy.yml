@@ -1,0 +1,28 @@
+name: Deploy to Google App Engine
+
+on:
+  push:
+    branches:
+      - main   # This means it will deploy every time you push to the "main" branch
+      - master # If you use master instead of main, add it here as well
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the code from your repository
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Step 2: Set up Google Cloud SDK
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        project_id: YOUR_PROJECT_ID   # Replace with your Google Cloud project ID
+        credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}  # GitHub secret with your service account JSON
+
+    # Step 3: Deploy to Google App Engine
+    - name: Deploy to App Engine
+      run: |
+        gcloud app deploy --quiet  # Automatically deploy to App Engine without asking for confirmation
