@@ -19,7 +19,7 @@ jobs:
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v0.2.0
       with:
-        project_id: YOUR_PROJECT_ID   # Replace with your Google Cloud project ID
+        project_id: personal-portfolio-472008   # Replace with your Google Cloud project ID
         credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}  # GitHub secret with your service account JSON
 
     # Step 3: Deploy to Google App Engine
